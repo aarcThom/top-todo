@@ -1,15 +1,17 @@
 // toDo object factory function
 
-const ToDoFactory = () => {
-  let status = false;
-  let title = '';
-  let description = '';
-  let dueDate = '12-12-12';
-  let priorty = 'low';
+const ToDoFactory = (tdComplete = false, tdTitle = 'New Task', tdDescription = 'Task Description',
+  tdDueDate = '12-12-12', tdPriority = 'low') => {
+
+  let complete = tdComplete;
+  let title = tdTitle;
+  let description = tdDescription;
+  let dueDate = tdDueDate;
+  let priority = tdPriority;
 
   // toggle status setter
   const changeStatus = () => {
-    status = status !== true;
+    complete = complete !== true;
   };
 
   // title and description setter
@@ -28,38 +30,23 @@ const ToDoFactory = () => {
 
   // toggle priority
   const changePriority = () => {
-    if (priorty === 'low') {
-      priorty = 'high';
+    if (priority === 'low') {
+      priority = 'high';
     } else {
-      priorty = 'low';
+      priority = 'low';
     }
   };
 
   // getter for all values
-  const getValue = (valRequested) => {
-    switch (valRequested) {
-    case 'status':
-      return status;
-    case 'title':
-      return title;
-    case 'description':
-      return description;
-    case 'dueDate':
-      return dueDate;
-    case 'priority':
-      return priorty;
-    default:
-      return 'nothing';
-    }
-  }
+  const getValues = () => ({ complete, title, description, dueDate, priority });
 
-  return { changeStatus, changeText, changeDate, changePriority, getValue };
+  return { changeStatus, changeText, changeDate, changePriority, getValues };
 };
 
 
 
 
 const test = ToDoFactory();
-console.log(test.getValue('status'));
+console.log(test.getValues());
 test.changeStatus();
-console.log(test.getValue('status'));
+console.log(test.getValues());
