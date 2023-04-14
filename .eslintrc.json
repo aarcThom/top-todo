@@ -15,9 +15,6 @@
     },
     "rules": {
 	"indent": ["error", 2],
-	"import/no-extraneous-dependencies": ["error", 
-    {"devDependencies": false, 
-    "optionalDependencies": false, 
-    "peerDependencies": false}]
+	"import/no-extraneous-dependencies": ["error", {"devDependencies": false, "optionalDependencies": false, "peerDependencies": false}]
     }
 }
