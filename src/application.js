@@ -46,9 +46,9 @@ const ToDoFactory = (tdId, tdComplete = false, tdTitle = 'New Task', tdDescripti
   };
 
   // getter for all values
-  const getValues = () => ({ id, complete, title, description, dueDate, priority });
+  const getValues = () => ({complete, title, description, dueDate, priority });
 
-  return { changeStatus, changeText, changeDate, changePriority, getValues };
+  return { id, changeStatus, changeText, changeDate, changePriority, getValues };
 };
 
 // projects factory function ================================================================================
@@ -59,7 +59,7 @@ const ProjectsFactory = (projectId, projectTitle = 'New Project',
   const id = randomId(projectId);
   let title = projectTitle;
   let description = projectDescription;
-  const toDoList = [];
+  let toDoList = [];
 
   // title and description setter
   const changeText = (textToChange, newChange) => {
@@ -72,14 +72,22 @@ const ProjectsFactory = (projectId, projectTitle = 'New Project',
   // add toDos to the list
   const addTodo = () => toDoList.push(ToDoFactory());
 
-  // getter for all values
-  const getValues = () => ({ id, title, description, toDoList});
+  // remove particular toDo from list
+  const removeTodo = function rmvTodo(idToRemove) {
+    toDoList = toDoList.filter(toDoObj => toDoObj.id === idToRemove);
+  }
 
-  return { changeText, getValues, addTodo};
+  // getter for all values
+  const getValues = () => ({ title, description, toDoList });
+
+  return { id, toDoList, changeText, getValues, addTodo, removeTodo};
 
 };
 
 const test = ProjectsFactory();
-console.log(test.getValues());
 test.addTodo();
-console.log(test.getValues());
+test.addTodo();
+test.toDoList.forEach(toDo => console.log(toDo.id));
+const toRemove = test.toDoList[0].id;
+test.removeTodo(toRemove);
+test.toDoList.forEach(toDo => console.log(toDo.id));
