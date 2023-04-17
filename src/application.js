@@ -122,6 +122,4 @@ const canvasModule = (() => {
   return {projectArr, canvasArr, addProject, removeProject, addToCanvas, removeFromCanvas};
 })();
 
-
-// eslint-disable-next-line import/prefer-default-export
-export { canvasModule };
+export { canvasModule, ProjectsFactory, ToDoFactory };

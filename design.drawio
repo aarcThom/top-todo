@@ -136,7 +136,7 @@
                 <mxCell id="58" value="" style="shape=tableRow;horizontal=0;startSize=0;swimlaneHead=0;swimlaneBody=0;top=0;left=0;bottom=0;right=0;collapsible=0;dropTarget=0;fillColor=none;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;fontSize=18;" parent="57" vertex="1">
                     <mxGeometry y="48" width="500" height="435" as="geometry"/>
                 </mxCell>
-                <mxCell id="59" value="PROPERTIES:&lt;br&gt;List of Projects (all are on sidebar)&lt;br&gt;List of Projects on Canvas&lt;br&gt;&lt;br&gt;FUNCTIONS:&lt;br&gt;remove project&lt;br&gt;add project&lt;br&gt;move project to canvas&lt;br&gt;remove project from canvas" style="shape=partialRectangle;html=1;whiteSpace=wrap;connectable=0;overflow=hidden;fillColor=none;top=0;left=0;bottom=0;right=0;pointerEvents=1;fontSize=18;" parent="58" vertex="1">
+                <mxCell id="59" value="PROPERTIES:&lt;br&gt;List of Projects (all are on sidebar)&lt;br&gt;List of Projects on Canvas&lt;br&gt;&lt;br&gt;FUNCTIONS:&lt;br&gt;remove project&lt;br&gt;add project&lt;br&gt;move project to canvas&lt;br&gt;remove project from canvass" style="shape=partialRectangle;html=1;whiteSpace=wrap;connectable=0;overflow=hidden;fillColor=none;top=0;left=0;bottom=0;right=0;pointerEvents=1;fontSize=18;" parent="58" vertex="1">
                     <mxGeometry width="500" height="435" as="geometry">
                         <mxRectangle width="500" height="435" as="alternateBounds"/>
                     </mxGeometry>
