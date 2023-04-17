@@ -59,6 +59,9 @@ const ProjectsFactory = (projectId, projectTitle = 'New Project',
   const id = randomId(projectId, 'prjct-');
   let title = projectTitle;
   let description = projectDescription;
+  // I disabled the eslint rule because toDoArr IS modified. I just needed to use this.toDoArr to set
+  // a new value for toDoArr inside of the removeTodo method.
+  // eslint-disable-next-line prefer-const
   let toDoArr = [];
 
   // title and description setter
@@ -93,27 +96,32 @@ const ProjectsFactory = (projectId, projectTitle = 'New Project',
 
 // Canvas Module =============================================================================================
 const canvasModule = (() => {
-  let projectArr = [];
-  const canvasArr = [];
+  // I disabled the eslint rule because projectArr IS modified. I just needed to use this.projectArr to set
+  // a new value for projectArr inside of the removeProject method.
+  // eslint-disable-next-line prefer-const
+  let projectArr = []; 
+  // eslint-disable-next-line prefer-const
+  let canvasArr = [];
 
   const addProject = () => projectArr.push(ProjectsFactory());
 
   const removeProject = function rmvProj(idToRemove) {
     this.projectArr = projectArr.filter(projObj => projObj.id !== idToRemove);
+  };
+
+  const addToCanvas = (idToAdd) => {
+    const projToAdd = projectArr.filter(projObj => projObj.id === idToAdd)[0];
+    canvasArr.push(projToAdd);
+  };
+
+  const removeFromCanvas = function rmvCanvas(idToRemove) {
+    this.canvasArr = canvasArr.filter(projObj => projObj.id !== idToRemove);
   }
 
 
-  return {projectArr, canvasArr, addProject, removeProject};
+  return {projectArr, canvasArr, addProject, removeProject, addToCanvas, removeFromCanvas};
 })();
 
 
-canvasModule.addProject();
-canvasModule.addProject();
-canvasModule.addProject();
-canvasModule.addProject();
-
-canvasModule.projectArr.forEach(obj => console.log(obj.id));
-console.log('------------------');
-const reID = canvasModule.projectArr[1].id;
-canvasModule.removeProject(reID);
-canvasModule.projectArr.forEach(obj => console.log(obj.id));
+// eslint-disable-next-line import/prefer-default-export
+export { canvasModule };
