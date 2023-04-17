@@ -59,7 +59,7 @@ const ProjectsFactory = (projectId, projectTitle = 'New Project',
   const id = randomId(projectId, 'prjct-');
   let title = projectTitle;
   let description = projectDescription;
-  let toDoList = [];
+  let toDoArr = [];
 
   // title and description setter
   const changeText = (textToChange, newChange) => {
@@ -70,23 +70,50 @@ const ProjectsFactory = (projectId, projectTitle = 'New Project',
   };
 
   // add toDos to the array
-  const addTodo = () => toDoList.push(ToDoFactory());
+  const addTodo = () => toDoArr.push(ToDoFactory());
 
   // remove particular toDo from array
   const removeTodo = function rmvTodo(idToRemove) {
-    toDoList = toDoList.filter(toDoObj => toDoObj.id === idToRemove);
-  }
+    this.toDoArr = toDoArr.filter(toDoObj => toDoObj.id !== idToRemove);
+  };
 
   // move particular toDo from one positon in the array to another
   const moveTodo = (currentPos, newPos) => {
-    const itemToMove = toDoList[currentPos];
-    toDoList.splice(currentPos, 1);
-    toDoList.splice(newPos, 0, itemToMove);
-  }
+    const itemToMove = toDoArr[currentPos];
+    toDoArr.splice(currentPos, 1);
+    toDoArr.splice(newPos, 0, itemToMove);
+  };
  
   // getter for all values
-  const getValues = () => ({ title, description, toDoList });
+  const getValues = () => ({ title, description, toDoArr });
 
-  return { id, toDoList, changeText, getValues, addTodo, removeTodo, moveTodo};
+  return { id, toDoArr, changeText, getValues, addTodo, removeTodo, moveTodo};
 
 };
+
+// Canvas Module =============================================================================================
+const canvasModule = (() => {
+  let projectArr = [];
+  const canvasArr = [];
+
+  const addProject = () => projectArr.push(ProjectsFactory());
+
+  const removeProject = function rmvProj(idToRemove) {
+    this.projectArr = projectArr.filter(projObj => projObj.id !== idToRemove);
+  }
+
+
+  return {projectArr, canvasArr, addProject, removeProject};
+})();
+
+
+canvasModule.addProject();
+canvasModule.addProject();
+canvasModule.addProject();
+canvasModule.addProject();
+
+canvasModule.projectArr.forEach(obj => console.log(obj.id));
+console.log('------------------');
+const reID = canvasModule.projectArr[1].id;
+canvasModule.removeProject(reID);
+canvasModule.projectArr.forEach(obj => console.log(obj.id));
