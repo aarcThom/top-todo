@@ -1,7 +1,7 @@
 // shared functions =========================================================================================
-function randomId(givenId) {
+function randomId(givenId,idType) {
   if (!givenId) {
-    return Math.floor(Math.random()*Date.now()).toString(16);
+    return idType.concat(Math.floor(Math.random()*Date.now()).toString(16));
   }
   return givenId;
 };
@@ -10,7 +10,7 @@ function randomId(givenId) {
 const ToDoFactory = (tdId, tdComplete = false, tdTitle = 'New Task', tdDescription = 'Task Description',
   tdDueDate = '12-12-12', tdPriority = 'low') => {
   
-  const id = randomId(tdId);
+  const id = randomId(tdId, 'toDo-');
   let complete = tdComplete;
   let title = tdTitle;
   let description = tdDescription;
@@ -56,7 +56,7 @@ const ToDoFactory = (tdId, tdComplete = false, tdTitle = 'New Task', tdDescripti
 const ProjectsFactory = (projectId, projectTitle = 'New Project', 
   projectDescription = 'Project Description') => {
   
-  const id = randomId(projectId);
+  const id = randomId(projectId, 'prjct-');
   let title = projectTitle;
   let description = projectDescription;
   let toDoList = [];
@@ -69,25 +69,24 @@ const ProjectsFactory = (projectId, projectTitle = 'New Project',
     }
   };
 
-  // add toDos to the list
+  // add toDos to the array
   const addTodo = () => toDoList.push(ToDoFactory());
 
-  // remove particular toDo from list
+  // remove particular toDo from array
   const removeTodo = function rmvTodo(idToRemove) {
     toDoList = toDoList.filter(toDoObj => toDoObj.id === idToRemove);
   }
 
+  // move particular toDo from one positon in the array to another
+  const moveTodo = (currentPos, newPos) => {
+    const itemToMove = toDoList[currentPos];
+    toDoList.splice(currentPos, 1);
+    toDoList.splice(newPos, 0, itemToMove);
+  }
+ 
   // getter for all values
   const getValues = () => ({ title, description, toDoList });
 
-  return { id, toDoList, changeText, getValues, addTodo, removeTodo};
+  return { id, toDoList, changeText, getValues, addTodo, removeTodo, moveTodo};
 
 };
-
-const test = ProjectsFactory();
-test.addTodo();
-test.addTodo();
-test.toDoList.forEach(toDo => console.log(toDo.id));
-const toRemove = test.toDoList[0].id;
-test.removeTodo(toRemove);
-test.toDoList.forEach(toDo => console.log(toDo.id));
