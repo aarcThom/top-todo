@@ -1,10 +1,30 @@
 import './style.css';
 
-import { canvasModule } from "./application";
+import { ProjectsFactory, ToDoFactory } from "./application";
+import { ProjFactDom } from './dom';
 
-const canvas = canvasModule;
 
-canvas.addProject();
+// the page layout elements
+const sideBar = document.querySelector('#side-bar');
+const canvas = document.querySelector('#canvas');
 
-canvas.projectArr.forEach(obj => obj.addTodo());
-canvas.projectArr.forEach(obj => console.log(obj.getValues()));
+// the mediator module
+const page =(() => {
+
+  const addProject = () => {
+    const newProj = ProjectsFactory();
+    const newDomProj = ProjFactDom(newProj);
+    sideBar.appendChild(newDomProj.barRender);
+  };
+
+  return { addProject }
+})();
+
+
+// the add project button
+const addProjBut = document.querySelector('#add-project-but');
+addProjBut.addEventListener('click', () => {
+  page.addProject();
+})
+
+

@@ -73,7 +73,7 @@ const ProjectsFactory = (projectId, projectTitle = 'New Project',
   };
 
   // add toDos to the array
-  const addTodo = () => toDoArr.push(ToDoFactory());
+  const addTodo = (toDo) => toDoArr.push(toDo);
 
   // remove particular toDo from array
   const removeTodo = function rmvTodo(idToRemove) {
@@ -94,32 +94,4 @@ const ProjectsFactory = (projectId, projectTitle = 'New Project',
 
 };
 
-// Canvas Module =============================================================================================
-const canvasModule = (() => {
-  // I disabled the eslint rule because projectArr IS modified. I just needed to use this.projectArr to set
-  // a new value for projectArr inside of the removeProject method.
-  // eslint-disable-next-line prefer-const
-  let projectArr = []; 
-  // eslint-disable-next-line prefer-const
-  let canvasArr = [];
-
-  const addProject = () => projectArr.push(ProjectsFactory());
-
-  const removeProject = function rmvProj(idToRemove) {
-    this.projectArr = projectArr.filter(projObj => projObj.id !== idToRemove);
-  };
-
-  const addToCanvas = (idToAdd) => {
-    const projToAdd = projectArr.filter(projObj => projObj.id === idToAdd)[0];
-    canvasArr.push(projToAdd);
-  };
-
-  const removeFromCanvas = function rmvCanvas(idToRemove) {
-    this.canvasArr = canvasArr.filter(projObj => projObj.id !== idToRemove);
-  }
-
-
-  return {projectArr, canvasArr, addProject, removeProject, addToCanvas, removeFromCanvas};
-})();
-
-export { canvasModule, ProjectsFactory, ToDoFactory };
+export { ProjectsFactory, ToDoFactory };
