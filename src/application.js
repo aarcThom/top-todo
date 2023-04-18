@@ -7,9 +7,10 @@ function randomId(givenId,idType) {
 };
 
 // toDo object factory function =============================================================================
-const ToDoFactory = (tdId, tdComplete = false, tdTitle = 'New Task', tdDescription = 'Task Description',
+const ToDoFactory = (tdProject, tdId, tdComplete = false, tdTitle = 'New Task', tdDescription = 'Task Description',
   tdDueDate = '12-12-12', tdPriority = 'low') => {
   
+  let project = tdProject;
   const id = randomId(tdId, 'toDo-');
   let complete = tdComplete;
   let title = tdTitle;
@@ -17,27 +18,47 @@ const ToDoFactory = (tdId, tdComplete = false, tdTitle = 'New Task', tdDescripti
   let dueDate = tdDueDate;
   let priority = tdPriority;
 
+  // project getter
+  const getProject = () => project;
+  // project setter
+  const setProject = (newProject) => {project = newProject};
+
+  // id getter
+  const getId = () => id;
+
+  // status getter
+  const getComplete = () => complete;
   // toggle status setter
-  const changeStatus = () => {
+  const toggleComplete = () => {
     complete = complete !== true;
   };
 
-  // title and description setter
-  const changeText = (textToChange, newChange) => {
-    if (textToChange === 'title') {
-      title = newChange; } else {
-      description = newChange;
-    }
+  // title getter
+  const getTitle = () => title;
+  // title setter
+  const setTitle = (newText) => {
+    title = newText;
   };
 
+  // description getter
+  const getDescription = () => description;
+  // description setter
+  const setDescription = (newText) => {
+    description = newText;
+  };
+
+  // due date getter
+  const getDueDate = () => dueDate;
   // due date setter
-  const changeDate = (newDate) => {
+  const setDueDate = (newDate) => {
     // enter formatting steps here
     dueDate = newDate;
   };
 
+  // priority getter
+  const getPriority = () => priority;
   // toggle priority
-  const changePriority = () => {
+  const togglePriority = () => {
     if (priority === 'low') {
       priority = 'high';
     } else {
@@ -45,10 +66,9 @@ const ToDoFactory = (tdId, tdComplete = false, tdTitle = 'New Task', tdDescripti
     }
   };
 
-  // getter for all values
-  const getValues = () => ({complete, title, description, dueDate, priority });
 
-  return { id, changeStatus, changeText, changeDate, changePriority, getValues };
+  return { getProject, setProject, getId, getComplete, toggleComplete, getTitle, setTitle, getDescription, 
+    setDescription, getDueDate, setDueDate, getPriority, togglePriority  };
 };
 
 // projects factory function ================================================================================
@@ -63,6 +83,7 @@ const ProjectsFactory = (projectId, projectTitle = 'New Project',
   // a new value for toDoArr inside of the removeTodo method.
   // eslint-disable-next-line prefer-const
   let toDoArr = [];
+
 
   // title and description setter
   const changeText = (textToChange, newChange) => {
