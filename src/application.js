@@ -102,6 +102,10 @@ const toDoList =(() => {
 
   let groupByProject = true;
 
+  const toggleGroupByProject = () => {
+    groupByProject = groupByProject !== true;
+  };
+
   // sort modes
   // 0 - none
   // 1 - due date
@@ -129,6 +133,9 @@ const toDoList =(() => {
     return newToDo;
   };
 
+  // this method is interesting. I created an object whose values are functions. I then can call
+  // the function I need based on the key which is the sortMode in this instance. It's almost like
+  // a more refined Switch statement.
   const sortToDos = () => {
     if (sortMode !== 0) {
       const sortAlgo = {
