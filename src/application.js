@@ -7,10 +7,10 @@ function randomId(givenId,idType) {
 };
 
 // toDo object factory function =============================================================================
-const ToDoFactory = (tdProject, tdId, tdComplete = false, tdTitle = 'New Task', tdDescription = 'Task Description',
-  tdDueDate = '12-12-12', tdPriority = 'low') => {
+const ToDoFactory = (tdProject, tdId, tdComplete = false, tdTitle = 'New Task', 
+  tdDescription = 'Task Description', tdDueDate = '12-12-12', tdPriority = 0) => {
   
-  let project = tdProject;
+  let projectId = tdProject.getId();
   const id = randomId(tdId, 'toDo-');
   let complete = tdComplete;
   let title = tdTitle;
@@ -19,9 +19,9 @@ const ToDoFactory = (tdProject, tdId, tdComplete = false, tdTitle = 'New Task', 
   let priority = tdPriority;
 
   // project getter
-  const getProject = () => project;
+  const getProject = () => projectId;
   // project setter
-  const setProject = (newProject) => {project = newProject};
+  const setProject = (newProject) => {projectId = newProject.getId()};
 
   // id getter
   const getId = () => id;
@@ -58,17 +58,13 @@ const ToDoFactory = (tdProject, tdId, tdComplete = false, tdTitle = 'New Task', 
   // priority getter
   const getPriority = () => priority;
   // toggle priority
-  const togglePriority = () => {
-    if (priority === 'low') {
-      priority = 'high';
-    } else {
-      priority = 'low';
-    }
+  const setPriority = (newPriority) => {
+    priority = newPriority;
   };
 
 
   return { getProject, setProject, getId, getComplete, toggleComplete, getTitle, setTitle, getDescription, 
-    setDescription, getDueDate, setDueDate, getPriority, togglePriority  };
+    setDescription, getDueDate, setDueDate, getPriority, setPriority  };
 };
 
 // projects factory function ================================================================================
@@ -79,40 +75,106 @@ const ProjectsFactory = (projectId, projectTitle = 'New Project',
   const id = randomId(projectId, 'prjct-');
   let title = projectTitle;
   let description = projectDescription;
-  // I disabled the eslint rule because toDoArr IS modified. I just needed to use this.toDoArr to set
-  // a new value for toDoArr inside of the removeTodo method.
-  // eslint-disable-next-line prefer-const
-  let toDoArr = [];
 
+  // id getter
+  const getId = () => id;
 
-  // title and description setter
-  const changeText = (textToChange, newChange) => {
-    if (textToChange === 'title') {
-      title = newChange; } else {
-      description = newChange;
-    }
+  // title getter
+  const getTitle = () => title;
+  // title setter
+  const setTitle = (newTitle) => {
+    title = newTitle;
   };
 
-  // add toDos to the array
-  const addTodo = (toDo) => toDoArr.push(toDo);
-
-  // remove particular toDo from array
-  const removeTodo = function rmvTodo(idToRemove) {
-    this.toDoArr = toDoArr.filter(toDoObj => toDoObj.id !== idToRemove);
+  // description getter 
+  const getDescription = () => description;
+  // description setter
+  const setDescription = (newDescription) => {
+    description = newDescription;
   };
 
-  // move particular toDo from one positon in the array to another
-  const moveTodo = (currentPos, newPos) => {
-    const itemToMove = toDoArr[currentPos];
-    toDoArr.splice(currentPos, 1);
-    toDoArr.splice(newPos, 0, itemToMove);
-  };
- 
-  // getter for all values
-  const getValues = () => ({ title, description, toDoArr });
-
-  return { id, toDoArr, changeText, getValues, addTodo, removeTodo, moveTodo};
+  return { getId, getTitle, setTitle, getDescription, setDescription };
 
 };
 
-export { ProjectsFactory, ToDoFactory };
+// the canvas module =========================================================================================
+const toDoList =(() => {
+
+  let groupByProject = true;
+
+  // sort modes
+  // 0 - none
+  // 1 - due date
+  // 2 - priority
+  // 3 - alphabetically
+  let sortMode = 0;
+
+  const getSortMode = () => sortMode;
+  const setSortMode = (newMode) => {
+    sortMode = newMode;
+  };
+  
+  const projectArr = [];
+  const toDoArr = [];
+
+  const addProject = () => {
+    const newProj = ProjectsFactory();
+    projectArr.push(newProj);
+    return newProj;
+  };
+
+  const addToDo = (hostProject) => {
+    const newToDo = ToDoFactory(hostProject);
+    toDoArr.push(newToDo);
+    return newToDo;
+  };
+
+  const sortToDos = () => {
+    if (sortMode !== 0) {
+      const sortAlgo = {
+
+        // sort mode 1 is by due date - current strings
+        1: () => { 
+          toDoArr.sort((a, b) => {
+            if (a.getDueDate() > b.getDueDate()) {
+              return 1;
+            }
+            return -1;
+          })
+        },
+
+        // sort mode 2 is by priority - currently num
+        2: () => {
+          toDoArr.sort((a, b) => a.getPriority() - b.getPriority())
+        },
+
+        // sort mode 3 is by title - strings
+        3: () => { 
+          toDoArr.sort((a, b) => {
+            if (a.getTitle() > b.getTitle()) {
+              return 1;
+            }
+            return -1;
+          })
+        },
+      };
+      sortAlgo[sortMode]();
+    };
+  };
+
+  const getList = () => {
+    if (groupByProject) 
+    {
+      console.log('hello');
+    } else 
+    {
+      console.log('hello');
+    }
+  };
+
+
+
+  return { groupByProject, getSortMode, setSortMode, addProject, addToDo, getList, projectArr, toDoArr, sortToDos }
+})();
+
+export { toDoList };
