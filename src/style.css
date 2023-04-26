@@ -9,9 +9,36 @@ body {
     grid-template-rows: 150px auto;
 }
 
+/* scrollbar modifications */
+::-webkit-scrollbar {
+    width: 20px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+    background: rgb(45, 51, 58);
+    border-left: 1px solid rgb(61, 69, 78);
+}
+
+/* Track on hover */
+::-webkit-scrollbar-track:hover {
+    background: rgb(45, 51, 58);
+    border-left: 1px solid rgb(96, 160, 202);
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background: rgb(61, 69, 78);
+    width: 19px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+    background: rgb(96, 160, 202);
+}
+
 #header {
     grid-row: 1;
-    border: 2px solid greenyellow;
     height: 150px;
     box-sizing: border-box;
 
@@ -28,7 +55,6 @@ body {
 
 #canvas {
     grid-row: 2;
-    border: 2px solid magenta;
     height: 100%;
     box-sizing: border-box;
     width: 100vw;
@@ -44,7 +70,7 @@ body {
 }
 
 .project-collapsed {
-    border: 2px dashed rgb(96, 160, 202);
+    border: 1px dashed rgb(96, 160, 202);
     min-height: 200px;
     border-radius: 20px;
 }
@@ -53,7 +79,7 @@ body {
     width: 100%;
     padding: 20px;
     box-sizing: border-box;
-    border-bottom: 2px dashed rgb(96, 160, 202);
+    border-bottom: 1px dashed rgb(96, 160, 202);
 
     font-family: 'Courier New', Courier, monospace;
     color: rgb(96, 160, 202);
