@@ -6,6 +6,7 @@ const canvas = document.querySelector('#canvas');
 // dom elements ===========================
 function projectDomFactory () {
   const newProj = document.createElement('div');
+  newProj.className = 'project';
   newProj.innerHTML = 'NEW PROJECT';
   return newProj;
 };
