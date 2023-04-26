@@ -100,26 +100,34 @@ const ProjectsFactory = (projectId, projectTitle = 'New Project',
 // the canvas module =========================================================================================
 const toDoList =(() => {
 
+  let sortMode = 0;
   let groupByProject = true;
+  const projectArr = [];
+  const toDoArr = [];
+
+  const setSortMode = (newMode) => {
+    if ( newMode === 0 // no sort
+      || newMode === 1 // sort by due date 
+      || newMode === 2 // sort by priority 
+      || newMode === 3 // sort alphabetically
+    ) {
+      sortMode = newMode;
+    }
+  };
 
   const toggleGroupByProject = () => {
     groupByProject = groupByProject !== true;
   };
 
-  // sort modes
-  // 0 - none
-  // 1 - due date
-  // 2 - priority
-  // 3 - alphabetically
-  let sortMode = 0;
+  const getGroupByProject = () => groupByProject;
 
-  const getSortMode = () => sortMode;
-  const setSortMode = (newMode) => {
-    sortMode = newMode;
+  const addToDo = (hostProject) => {
+    const newToDo = ToDoFactory(hostProject);
+    toDoArr.push(newToDo);
+    return newToDo;
   };
-  
-  const projectArr = [];
-  const toDoArr = [];
+
+  const getToDos = () => toDoArr;
 
   const addProject = () => {
     const newProj = ProjectsFactory();
@@ -127,11 +135,9 @@ const toDoList =(() => {
     return newProj;
   };
 
-  const addToDo = (hostProject) => {
-    const newToDo = ToDoFactory(hostProject);
-    toDoArr.push(newToDo);
-    return newToDo;
-  };
+  const getProjects = () => projectArr;
+
+
 
   // this method is interesting. I created an object whose values are functions. I then can call
   // the function I need based on the key which is the sortMode in this instance. It's almost like
@@ -169,19 +175,11 @@ const toDoList =(() => {
     };
   };
 
-  const getList = () => {
-    if (groupByProject) 
-    {
-      console.log('hello');
-    } else 
-    {
-      console.log('hello');
-    }
-  };
 
 
-
-  return { groupByProject, getSortMode, setSortMode, addProject, addToDo, getList, projectArr, toDoArr, sortToDos }
+  return { setSortMode, toggleGroupByProject, getGroupByProject, addProject, getProjects, 
+    addToDo, getToDos, sortToDos }
 })();
 
+// eslint-disable-next-line import/prefer-default-export
 export { toDoList };

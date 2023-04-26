@@ -1,15 +1,33 @@
-// project factory function ==================================================================================
-const ProjFactDom = (project) => {
-  // inheriting properties from the logic side project object
-  const {title, description, toDoArr} = project.getValues();
-  const {id} = project;
+import './style.css';
 
-  const barRender = document.createElement("div");
-  barRender.className = 'sidebar-project';
-  barRender.innerHTML = `<div class = 'sidebar-title'>${title}</div>`;
+// the page layout elements ================================
+const canvas = document.querySelector('#canvas');
 
-  return { title, description, toDoArr, id, barRender }
+// dom elements ===========================
+function projectDomFactory () {
+  const newProj = document.createElement('div');
+  newProj.innerHTML = 'NEW PROJECT';
+  return newProj;
+};
+ 
 
+// rendering the projects ================================================================================
+function renderProjects (groupByProj, projects, toDos) {
+  canvas.innerHTML=''; // clear the canvas
+
+  projects.forEach( _ => {
+    const newP = projectDomFactory();
+    canvas.appendChild(newP);
+  });
 };
 
-export { ProjFactDom };
+
+
+
+
+
+
+
+
+// eslint-disable-next-line import/prefer-default-export
+export { renderProjects };
