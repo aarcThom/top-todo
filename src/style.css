@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono&display=swap');
+
 body {
     margin: 0;
     padding: 0;
@@ -59,20 +61,13 @@ body {
     box-sizing: border-box;
     width: 100vw;
     padding: 20px;
-
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(500px, 1fr));
-    grid-template-rows: repeat(auto-fit, minmax(200px, 1fr));
-    column-gap: 20px;
-    row-gap: 20px;
-
-    overflow-x: hidden;
 }
 
 .project-collapsed {
+    width: 50%;
     border: 1px dashed rgb(96, 160, 202);
-    min-height: 200px;
     border-radius: 20px;
+    height: fit-content;
 }
 
 .project-header, .project-description {
@@ -81,7 +76,7 @@ body {
     box-sizing: border-box;
     border-bottom: 1px dashed rgb(96, 160, 202);
 
-    font-family: 'Courier New', Courier, monospace;
+    font-family: 'IBM Plex Mono', monospace;
     color: rgb(96, 160, 202);
 
 }
@@ -89,4 +84,13 @@ body {
 .project-header {
     font-size: 30px;
     height: 80px;
+}
+
+.todo-collapsed {
+    margin: 20px;
+    padding: 20px;
+    border: 1px dashed rgb(255, 188, 62);
+    color: rgb(255, 188, 62);
+    font-family: 'IBM Plex Mono', monospace;
+    border-radius: 10px;
 }
