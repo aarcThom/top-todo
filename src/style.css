@@ -1,5 +1,19 @@
 @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono&display=swap');
 
+/* custom variables */
+:root {
+    /* colors */
+    --projectBrdrColor: rgb(96, 160, 202);
+
+    /* styles */
+    --projectBorder: 1px dashed var(--projectBrdrColor);
+    --projectBrdrRadius: 20px;
+
+    /* sizes */
+    --projectWidth: 500px;
+}
+
+
 body {
     margin: 0;
     padding: 0;
@@ -22,7 +36,7 @@ body {
 /* Track on hover */
 ::-webkit-scrollbar-track:hover {
     background: rgb(45, 51, 58);
-    border-left: 1px solid rgb(96, 160, 202);
+    border-left: 1px solid var(--projectBrdrColor);
 }
 
 /* Handle */
@@ -33,7 +47,7 @@ body {
 
 /* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
-    background: rgb(96, 160, 202);
+    background: var(--projectBrdrColor);
 }
 
 #header {
@@ -67,22 +81,41 @@ body {
     padding-left: 20px;
 }
 
-.project-collapsed {
-    width: 500px;
-    border: 1px dashed rgb(96, 160, 202);
-    border-radius: 20px;
-    /* height: min-content; <----SWITCH BACK TO THIS */
-    height: 300px; 
+.project {
+    width: var(--projectWidth);
+    border: var(--projectBorder);
+    border-radius: var(--projectBrdrRadius);
 }
+
+/* all the height classes */
+.h-150 { height: 150px; }
+.h-200 { height: 200px; }
+.h-250 { height: 250px; }
+.h-300 { height: 300px; }
+.h-350 { height: 350px; }
+.h-400 { height: 400px; }
+.h-450 { height: 450px; }
+.h-500 { height: 500px; }
+.h-550 { height: 550px; }
+.h-600 { height: 600px; }
+.h-650 { height: 650px; }
+.h-700 { height: 700px; }
+.h-750 { height: 750px; }
+.h-800 { height: 800px; }
+.h-850 { height: 850px; }
+.h-900 { height: 900px; }
+.h-950 { height: 950px; }
+.h-1000 { height: 1000px; }
+
 
 .project-header, .project-description {
     width: 100%;
     padding: 20px;
     box-sizing: border-box;
-    border-bottom: 1px dashed rgb(96, 160, 202);
+    border-bottom: var(--projectBorder);
 
     font-family: 'IBM Plex Mono', monospace;
-    color: rgb(96, 160, 202);
+    color: var(--projectBrdrColor);
 
 }
 

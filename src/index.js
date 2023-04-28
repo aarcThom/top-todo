@@ -2,12 +2,12 @@ import './style.css';
 import Packery from 'packery';
 import Draggabilly from 'draggabilly';
 import { toDoList } from "./application";
-import { renderProjects } from './dom';
+import { projectDom } from './dom';
 
 
 // the packery initializing
 const pckry = new Packery( '#canvas', {
-  itemSelector: '.project-collapsed',
+  itemSelector: '.project',
   gutter: 20,
 });
 
@@ -36,16 +36,15 @@ function newToDo (hostPrj) {
 const addProjBut = document.querySelector('#add-project-but');
 addProjBut.addEventListener('click', () => {
 
-  // you can't clear the DOM, just add 1 new item
-  const newObj = document.createElement('div');
-  newObj.className = 'project-collapsed';
-  canvas.appendChild(newObj);
+  const newProj = page.addProject(); // add project to logicList
+  const newProjDom = projectDom(newProj.getTitle(),newProj.getDescription(),newProj.getId()); // add to DOM
+  canvas.appendChild(newProjDom); // add as child node of canvas
   
   // append the item to the packery instance
-  pckry.appended( newObj );
+  pckry.appended( newProjDom );
 
   // bind the dragabilly event to packery
-  const newDrag = new Draggabilly(newObj);
+  const newDrag = new Draggabilly(newProjDom);
   pckry.bindDraggabillyEvents(newDrag);
 })
 
