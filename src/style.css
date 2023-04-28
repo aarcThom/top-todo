@@ -71,7 +71,8 @@ body {
     width: 500px;
     border: 1px dashed rgb(96, 160, 202);
     border-radius: 20px;
-    height: min-content;
+    /* height: min-content; <----SWITCH BACK TO THIS */
+    height: 300px; 
 }
 
 .project-header, .project-description {

@@ -31,6 +31,7 @@
   },
   "dependencies": {
     "date-fns": "^2.29.3",
+    "draggabilly": "^3.0.0",
     "masonry-layout": "^4.2.2",
     "packery": "^2.1.2"
   }
