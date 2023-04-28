@@ -54,8 +54,6 @@ function projectDom (proj, projName, projDesc, projId, addTDLogic) {
 
 // rendering the projects ================================================================================
 function renderProjects (groupByProj, projects, toDos, tdLogicFunc) {
-  canvas.innerHTML=''; // clear the canvas
-
   if (groupByProj) {
     projects.forEach( prj => {
       const newP = projectDom(prj, prj.getId(), prj.getDescription(), prj.getId(), tdLogicFunc);

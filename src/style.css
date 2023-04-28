@@ -3,12 +3,9 @@
 body {
     margin: 0;
     padding: 0;
-    height: 100vh;
+    max-height: 100vh;
     width: 100vw;
     background-color: rgb(45, 51, 58);
-
-    display: grid;
-    grid-template-rows: 150px auto;
 }
 
 /* scrollbar modifications */
@@ -40,9 +37,9 @@ body {
 }
 
 #header {
-    grid-row: 1;
     height: 150px;
     box-sizing: border-box;
+    margin-bottom: 50px;
 
     display: flex;
     padding-left: 20px;
@@ -55,19 +52,26 @@ body {
     box-sizing: border-box;
 }
 
+#canvas-overflow {
+    height: calc(100vh - 200px);
+    box-sizing: border-box;
+
+    overflow-y: scroll;
+    overflow-x: hidden;
+}
+
 #canvas {
-    grid-row: 2;
-    height: 100%;
+    height: fit-content;
     box-sizing: border-box;
     width: 100vw;
-    padding: 20px;
+    padding-left: 20px;
 }
 
 .project-collapsed {
-    width: 50%;
+    width: 500px;
     border: 1px dashed rgb(96, 160, 202);
     border-radius: 20px;
-    height: fit-content;
+    height: min-content;
 }
 
 .project-header, .project-description {
@@ -94,3 +98,5 @@ body {
     font-family: 'IBM Plex Mono', monospace;
     border-radius: 10px;
 }
+
+

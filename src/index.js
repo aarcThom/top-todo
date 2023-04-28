@@ -1,14 +1,15 @@
 import './style.css';
+import Packery from 'packery';
 import { toDoList } from "./application";
 import { renderProjects } from './dom';
+import { doc } from 'prettier';
 
-const Packery = require('packery');
 
 // the packery libary
-const packeryCanvas = document.querySelector('#canvas');
-const pckry = new Packery( packeryCanvas, {
+const pckry = new Packery( '#canvas', {
   itemSelector: '.project-collapsed',
-  gutter: 20
+  gutter: 20,
+  percentPosition: true,
 });
 
 // the toDo list data
@@ -28,9 +29,10 @@ function newToDo (hostPrj) {
 // the add project button
 const addProjBut = document.querySelector('#add-project-but');
 addProjBut.addEventListener('click', () => {
-  page.addProject();
-  console.log(page.getProjects());
-  renderProjects(groupMode, pgProjects, pgToDos, newToDo);
+  const newObj = document.createElement('div');
+  newObj.className = 'project-collapsed';
+  canvas.appendChild(newObj);
+  pckry.appended( newObj );
 })
 
 // the group mode button
