@@ -7,10 +7,10 @@ function randomId(givenId,idType) {
 };
 
 // toDo object factory function =============================================================================
-const ToDoFactory = (tdProject, tdId, tdComplete = false, tdTitle = 'New Task', 
+const ToDoFactory = (tdProjectId, tdId, tdComplete = false, tdTitle = 'New Task', 
   tdDescription = 'Task Description', tdDueDate = '12-12-12', tdPriority = 0) => {
   
-  let projectId = tdProject.getId();
+  let projectId = tdProjectId;
   const id = randomId(tdId, 'toDo-');
   let complete = tdComplete;
   let title = tdTitle;

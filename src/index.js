@@ -37,7 +37,9 @@ const addProjBut = document.querySelector('#add-project-but');
 addProjBut.addEventListener('click', () => {
 
   const newProj = page.addProject(); // add project to logicList
-  const newProjDom = projectDom(newProj.getTitle(),newProj.getDescription(),newProj.getId()); // add to DOM
+  const newProjDom = projectDom(newProj.getTitle(),newProj.getDescription(),
+    newProj.getId(), newToDo, pckry); // add to DOM
+    
   canvas.appendChild(newProjDom); // add as child node of canvas
   
   // append the item to the packery instance
@@ -46,14 +48,13 @@ addProjBut.addEventListener('click', () => {
   // bind the dragabilly event to packery
   const newDrag = new Draggabilly(newProjDom);
   pckry.bindDraggabillyEvents(newDrag);
+
 })
 
 // the group mode button
 const groupModeBut = document.querySelector('#group-mode-but');
 groupModeBut.addEventListener('click', () => {
-  page.toggleGroupByProject();
-  groupMode = page.getGroupByProject();
-  renderProjects(groupMode, pgProjects, pgToDos, newToDo);
+
 })
 
 

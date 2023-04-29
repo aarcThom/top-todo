@@ -4,6 +4,8 @@
 :root {
     /* colors */
     --projectBrdrColor: rgb(96, 160, 202);
+    --bckgrndColor: rgb(45, 51, 58);
+    --todoBrdrColor: rgb(255, 188, 62);
 
     /* styles */
     --projectBorder: 1px dashed var(--projectBrdrColor);
@@ -19,7 +21,7 @@ body {
     padding: 0;
     max-height: 100vh;
     width: 100vw;
-    background-color: rgb(45, 51, 58);
+    background-color: var(--bckgrndColor);
 }
 
 /* scrollbar modifications */
@@ -29,13 +31,13 @@ body {
 
 /* Track */
 ::-webkit-scrollbar-track {
-    background: rgb(45, 51, 58);
+    background: var(--bckgrndColor);
     border-left: 1px solid rgb(61, 69, 78);
 }
 
 /* Track on hover */
 ::-webkit-scrollbar-track:hover {
-    background: rgb(45, 51, 58);
+    background: var(--bckgrndColor);
     border-left: 1px solid var(--projectBrdrColor);
 }
 
@@ -85,28 +87,8 @@ body {
     width: var(--projectWidth);
     border: var(--projectBorder);
     border-radius: var(--projectBrdrRadius);
+    background-color: var(--bckgrndColor);
 }
-
-/* all the height classes */
-.h-150 { height: 150px; }
-.h-200 { height: 200px; }
-.h-250 { height: 250px; }
-.h-300 { height: 300px; }
-.h-350 { height: 350px; }
-.h-400 { height: 400px; }
-.h-450 { height: 450px; }
-.h-500 { height: 500px; }
-.h-550 { height: 550px; }
-.h-600 { height: 600px; }
-.h-650 { height: 650px; }
-.h-700 { height: 700px; }
-.h-750 { height: 750px; }
-.h-800 { height: 800px; }
-.h-850 { height: 850px; }
-.h-900 { height: 900px; }
-.h-950 { height: 950px; }
-.h-1000 { height: 1000px; }
-
 
 .project-header, .project-description {
     width: 100%;
@@ -124,11 +106,28 @@ body {
     height: 80px;
 }
 
-.todo-collapsed {
-    margin: 20px;
+.todo-holder {
+    height: min-content;
+    width: 100%;
+}
+
+.project-button-bar {
     padding: 20px;
-    border: 1px dashed rgb(255, 188, 62);
-    color: rgb(255, 188, 62);
+    height: 50px;
+    width: 100%;
+}
+
+.project-buttons {
+    width: 50%;
+    height: 45px;
+}
+
+.todo {
+    height: 30px;
+    margin: 0px 20px 20px 20px;
+    padding: 20px 20px 0px 20px;
+    border: 1px dashed var(--todoBrdrColor);
+    color: var(--todoBrdrColor);
     font-family: 'IBM Plex Mono', monospace;
     border-radius: 10px;
 }
