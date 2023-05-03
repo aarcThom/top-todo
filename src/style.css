@@ -175,6 +175,12 @@ body {
     border-radius: 4px;
 }
 
+.todo-buttons:hover, .todo-interactive-buttons:hover {
+    border: 1px solid aliceblue;
+    color: aliceblue;
+    background-color: var(--highlightsidebarColor);
+}
+
 .todo-buttons { 
     grid-row: 1; 
 }

@@ -127,12 +127,10 @@ const toDoList =(() => {
     return newToDo;
   };
 
-  /* THIS HAS NOT BEEN TESTED
+
   const removeToDo = (toDoId) => {
-    const ix = toDoArr.indexOf(toDoArr.filter(x => x.getId() === toDoId)); // get index of id-having object
-    toDoArr.splice(ix, 1);
+    toDoArr = toDoArr.filter(td => td.getId() !== toDoId);
   };
-  */
 
   const getToDos = () => toDoArr;
 
@@ -190,7 +188,7 @@ const toDoList =(() => {
 
 
   return { setSortMode, toggleGroupByProject, getGroupByProject, addProject, removeProject, getProjects, 
-    addToDo, getToDos, sortToDos }
+    addToDo, removeToDo, getToDos, sortToDos }
 })();
 
 // eslint-disable-next-line import/prefer-default-export

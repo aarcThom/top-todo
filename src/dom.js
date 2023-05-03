@@ -2,7 +2,7 @@ import './style.css';
 
 // dom elements ===========================
 
-function toDoDom (td) {
+function toDoDom (td, rmvTdFnc, pckry) {
   const newToDo = document.createElement('div');
   newToDo.className = 'todo';
   newToDo.id = td.getId();
@@ -26,6 +26,13 @@ function toDoDom (td) {
   deleteToDoBut.id = 'delete-todo-but';
   deleteToDoBut.textContent = 'delete task';
   buttonBox.appendChild(deleteToDoBut);
+
+  deleteToDoBut.addEventListener('click', () => {
+    console.log(rmvTdFnc);
+    rmvTdFnc(td.getId());
+    newToDo.remove();
+    pckry.layout();
+  });
 
 
   const expandBut = document.createElement('button');
@@ -59,7 +66,8 @@ function toDoDom (td) {
   return newToDo;
 };
 
-function projectDom (projName, projDesc, projId, addToDoFunc, pckry, removePrjFnc) {
+function projectDom (projName, projDesc, projId, addToDoFunc, pckry, 
+  removePrjFnc, removeToDoFnc) {
   const newProj = document.createElement('div');
   newProj.className = 'project';
   newProj.id = projId;
@@ -98,7 +106,7 @@ function projectDom (projName, projDesc, projId, addToDoFunc, pckry, removePrjFn
     const newToDo = addToDoFunc(projId);
 
     // add toDo to DOM
-    const newToDoDom = toDoDom(newToDo);
+    const newToDoDom = toDoDom(newToDo, removeToDoFnc, pckry);
 
     // append to toDoHolder
     toDoHolder.appendChild(newToDoDom);
