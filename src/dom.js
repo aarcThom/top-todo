@@ -38,7 +38,7 @@ function toDoDom (td, rmvTdFnc, pckry) {
   const expandBut = document.createElement('button');
   expandBut.className = 'todo-buttons';
   expandBut.id = 'expand-todo-but';
-  expandBut.textContent = 'expand';
+  expandBut.textContent = 'minimize';
   buttonBox.appendChild(expandBut);
 
   const dueDateBut = document.createElement('button');
@@ -53,15 +53,24 @@ function toDoDom (td, rmvTdFnc, pckry) {
   priorityBut.textContent =  `Priority: ${td.getPriority()}`
   buttonBox.appendChild(priorityBut);
 
-
-
-
-
   newToDo.appendChild(buttonBox);
 
   const descriptionBox = document.createElement('div');
   descriptionBox.className = 'todo-description-box';
+  descriptionBox.textContent = `${td.getDescription()}`;
+  
   newToDo.appendChild(descriptionBox);
+
+  // expand button event
+  expandBut.addEventListener('click', () => {
+    if (expandBut.textContent === 'expand') {
+      expandBut.textContent = 'minimize';
+      descriptionBox.className = 'todo-description-box';
+    } else {
+      expandBut.textContent = 'expand';
+      descriptionBox.className = 'todo-description-box-hidden';
+    }});
+
 
   return newToDo;
 };

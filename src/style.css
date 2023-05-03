@@ -194,7 +194,17 @@ body {
 #priority-todo-but { grid-column: 4 / 7; }
 
 .todo-description-box {
+    padding: 8px;
+    overflow-wrap: break-word;
+    word-break: break-all;
+    color: aquamarine;
+    font-size: small;
 
+}
+
+.todo-description-box-hidden {
+    height: 0;
+    overflow: hidden;
 }
 
 
