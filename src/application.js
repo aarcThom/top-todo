@@ -97,13 +97,13 @@ const ProjectsFactory = (projectId, projectTitle = 'New Project',
 
 };
 
-// the canvas module =========================================================================================
+// the main toDoList module =========================================================================================
 const toDoList =(() => {
 
   let sortMode = 0;
   let groupByProject = true;
-  const projectArr = [];
-  const toDoArr = [];
+  let projectArr = [];
+  let toDoArr = [];
 
   const setSortMode = (newMode) => {
     if ( newMode === 0 // no sort
@@ -127,12 +127,24 @@ const toDoList =(() => {
     return newToDo;
   };
 
+  /* THIS HAS NOT BEEN TESTED
+  const removeToDo = (toDoId) => {
+    const ix = toDoArr.indexOf(toDoArr.filter(x => x.getId() === toDoId)); // get index of id-having object
+    toDoArr.splice(ix, 1);
+  };
+  */
+
   const getToDos = () => toDoArr;
 
   const addProject = () => {
     const newProj = ProjectsFactory();
     projectArr.push(newProj);
     return newProj;
+  };
+
+  const removeProject = (projectId) => {
+    projectArr = projectArr.filter(prj => prj.getId() !== projectId);
+    toDoArr = toDoArr.filter(toDo => toDo.getProject() !== projectId);
   };
 
   const getProjects = () => projectArr;
@@ -177,7 +189,7 @@ const toDoList =(() => {
 
 
 
-  return { setSortMode, toggleGroupByProject, getGroupByProject, addProject, getProjects, 
+  return { setSortMode, toggleGroupByProject, getGroupByProject, addProject, removeProject, getProjects, 
     addToDo, getToDos, sortToDos }
 })();
 

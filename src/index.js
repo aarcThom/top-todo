@@ -20,9 +20,6 @@ pckry.getItemElements().forEach(element => {
 
 // the toDo list data
 const page = toDoList;
-const pgProjects = page.getProjects();
-const pgToDos = page.getToDos();
-let groupMode = page.getGroupByProject();
 
 // the page layout elements
 const canvas = document.querySelector('#canvas');
@@ -32,13 +29,14 @@ function newToDo (hostPrj) {
   return page.addToDo(hostPrj);
 };
 
+
 // the add project button
 const addProjBut = document.querySelector('#add-project-but');
 addProjBut.addEventListener('click', () => {
 
   const newProj = page.addProject(); // add project to logicList
   const newProjDom = projectDom(newProj.getTitle(),newProj.getDescription(),
-    newProj.getId(), newToDo, pckry); // add to DOM
+    newProj.getId(), newToDo, pckry, page.removeProject); // add to DOM
     
   canvas.appendChild(newProjDom); // add as child node of canvas
   
@@ -54,7 +52,7 @@ addProjBut.addEventListener('click', () => {
 // the group mode button
 const groupModeBut = document.querySelector('#group-mode-but');
 groupModeBut.addEventListener('click', () => {
-
+  console.log(page.getToDos());
 })
 
 
