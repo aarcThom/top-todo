@@ -10,6 +10,7 @@ function toDoDom (td, rmvTdFnc, pckry) {
   const titleBox = document.createElement('div');
   titleBox.className = 'todo-title-box';
   titleBox.textContent = td.getTitle();
+  titleBox.contentEditable = 'true';
   newToDo.appendChild(titleBox);
 
   const buttonBox = document.createElement('div');
@@ -58,6 +59,7 @@ function toDoDom (td, rmvTdFnc, pckry) {
   const descriptionBox = document.createElement('div');
   descriptionBox.className = 'todo-description-box';
   descriptionBox.textContent = `${td.getDescription()}`;
+  descriptionBox.contentEditable = 'true';
   
   newToDo.appendChild(descriptionBox);
 
@@ -80,15 +82,21 @@ function projectDom (projName, projDesc, projId, addToDoFunc, pckry,
   const newProj = document.createElement('div');
   newProj.className = 'project';
   newProj.id = projId;
+
+  const projHandle = document.createElement('div');
+  projHandle.className = 'project-handle';
+  newProj.appendChild(projHandle);
   
   const projHeader = document.createElement('div');
   projHeader.className = 'project-header';
   projHeader.textContent = projName;
+  projHeader.contentEditable = 'true';
   newProj.appendChild(projHeader);
 
   const projDescription = document.createElement('div');
   projDescription.className = 'project-description';
   projDescription.textContent = projDesc;
+  projDescription.contentEditable = 'true';
   newProj.appendChild(projDescription);
 
   const toDoHolder = document.createElement('div');

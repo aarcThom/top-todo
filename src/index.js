@@ -13,7 +13,9 @@ const pckry = new Packery( '#canvas', {
 
 // initial Draggabilly binding
 pckry.getItemElements().forEach(element => {
-  const draggie = new Draggabilly(element);
+  const draggie = new Draggabilly(element, {
+    handle: '.project-handle'
+  });
   pckry.bindDraggabillyEvents(draggie);
 });
 
@@ -38,7 +40,9 @@ addProjBut.addEventListener('click', () => {
   pckry.appended( newProjDom );
 
   // bind the dragabilly event to packery
-  const newDrag = new Draggabilly(newProjDom);
+  const newDrag = new Draggabilly(newProjDom, {
+    handle: '.project-handle'
+  });
   pckry.bindDraggabillyEvents(newDrag);
 
 })

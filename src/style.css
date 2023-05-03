@@ -54,9 +54,9 @@ body {
 }
 
 #header {
-    height: 150px;
     box-sizing: border-box;
     margin-bottom: 50px;
+    overflow-wrap: break-word;
 
     display: flex;
     padding-left: 20px;
@@ -91,6 +91,16 @@ body {
     background-color: var(--bckgrndColor);
 }
 
+.project-handle {
+    background-color: var(--highlightsidebarColor);
+    width: 100%;
+    height: 30px;
+    border-radius: 20px 20px 0px 0px;
+    border-bottom: var(--projectBorder);
+
+
+}
+
 .project-header, .project-description {
     width: 100%;
     padding: 20px;
@@ -104,7 +114,9 @@ body {
 
 .project-header {
     font-size: 30px;
-    height: 80px;
+    min-height: 80px;
+    overflow-wrap: break-word;
+    word-break: break-all;
 }
 
 .todo-holder {
@@ -145,10 +157,10 @@ body {
 }
 
 .todo-title-box {
-    height: 30px;
-    padding-left: 20px;
-    padding-top: 10px;
+    padding: 10px 20px;
     border-bottom: 1px dashed var(--todoBrdrColor);
+    word-wrap: break-word;
+    word-break: break-all;
 
 }
 
@@ -194,7 +206,7 @@ body {
 #priority-todo-but { grid-column: 4 / 7; }
 
 .todo-description-box {
-    padding: 8px;
+    padding: 10px 20px;
     overflow-wrap: break-word;
     word-break: break-all;
     color: aquamarine;
