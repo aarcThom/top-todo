@@ -31,8 +31,7 @@ const addProjBut = document.querySelector('#add-project-but');
 addProjBut.addEventListener('click', () => {
 
   const newProj = page.addProject(); // add project to logicList
-  const newProjDom = projectDom(newProj.getTitle(),newProj.getDescription(),
-    newProj.getId(), page.addToDo, pckry, page.removeProject, page.removeToDo); // add to DOM
+  const newProjDom = projectDom(newProj, page.addToDo, pckry, page.removeProject, page.removeToDo); // add to DOM
     
   canvas.appendChild(newProjDom); // add as child node of canvas
   
@@ -50,7 +49,7 @@ addProjBut.addEventListener('click', () => {
 // the group mode button
 const groupModeBut = document.querySelector('#group-mode-but');
 groupModeBut.addEventListener('click', () => {
-  console.log(page.getToDos());
+  page.getProjects().forEach(prj => console.log(prj.getTitle()));
 })
 
 

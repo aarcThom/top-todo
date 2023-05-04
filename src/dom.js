@@ -71,17 +71,19 @@ function toDoDom (td, rmvTdFnc, pckry) {
     } else {
       expandBut.textContent = 'expand';
       descriptionBox.className = 'todo-description-box-hidden';
-    }});
+    }
+    pckry.layout();
+  });
 
 
   return newToDo;
 };
 
-function projectDom (projName, projDesc, projId, addToDoFunc, pckry, 
+function projectDom (proj, addToDoFunc, pckry, 
   removePrjFnc, removeToDoFnc) {
   const newProj = document.createElement('div');
   newProj.className = 'project';
-  newProj.id = projId;
+  newProj.id = proj.getId();
 
   const projHandle = document.createElement('div');
   projHandle.className = 'project-handle';
@@ -89,13 +91,17 @@ function projectDom (projName, projDesc, projId, addToDoFunc, pckry,
   
   const projHeader = document.createElement('div');
   projHeader.className = 'project-header';
-  projHeader.textContent = projName;
+  projHeader.textContent = proj.getTitle();
   projHeader.contentEditable = 'true';
   newProj.appendChild(projHeader);
 
+  projHeader.addEventListener('focusout', () => {
+    proj.setTitle(projHeader.textContent);
+  });
+
   const projDescription = document.createElement('div');
   projDescription.className = 'project-description';
-  projDescription.textContent = projDesc;
+  projDescription.textContent = proj.getDescription();
   projDescription.contentEditable = 'true';
   newProj.appendChild(projDescription);
 
@@ -120,7 +126,7 @@ function projectDom (projName, projDesc, projId, addToDoFunc, pckry,
   // adding callback function for the add toDo button click
   addToDoButton.addEventListener('click', () => {
     // add the todo to the todo logic list
-    const newToDo = addToDoFunc(projId);
+    const newToDo = addToDoFunc(proj.getId());
 
     // add toDo to DOM
     const newToDoDom = toDoDom(newToDo, removeToDoFnc, pckry);
@@ -135,7 +141,7 @@ function projectDom (projName, projDesc, projId, addToDoFunc, pckry,
 
   // adding callback function for remove project button
   deleteProjButton.addEventListener('click', () => {
-    removePrjFnc(projId); // remove this project and associated todos from the object list
+    removePrjFnc(proj.getId()); // remove this project and associated todos from the object list
     newProj.remove(); // remove form dom
     pckry.layout();
 
